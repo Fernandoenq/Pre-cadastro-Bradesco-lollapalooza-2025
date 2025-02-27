@@ -1,0 +1,50 @@
+/* Estilização da tela de sucesso */
+
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #d9d9d9; /* Mesma cor de fundo do cadastro */
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.success-card {
+    width: 75%;
+    height: 75%;
+    background-color: #d9d9d9; /* Mesma cor de fundo do cadastro */
+    border-radius: 1vh;
+    padding: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.success-logo {
+    width: 60%;
+    margin-bottom: 2vh;
+}
+
+.success-title {
+    font-size: 3vh;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 2vh;
+    color: black;
+}
+
+.success-text {
+    font-size: 2vh;
+    color: black;
+    max-width: 80%;
+}
+
+.success-footer {
+    margin-top: auto;
+    font-size: 1.8vh;
+    color: black;
+}
