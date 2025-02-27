@@ -5,6 +5,10 @@ import { useApi } from "../useApi/useApi";
 import { validateCpf } from "../utils/CpfUtils";
 import { validateWhatsapp } from "../utils/WhatsappUtils";
 import { validateEmail } from "../utils/EmailUtils";
+import InputField from "../components/InputField";
+import CheckboxField from "../components/CheckboxField";
+import AgeDropdown from "../components/AgeDropdown";
+import Popup from "../components/Popup";
 
 const CadastroCompleto: React.FC = () => {
     const navigate = useNavigate();
@@ -17,27 +21,27 @@ const CadastroCompleto: React.FC = () => {
       email: "",
       lgpd: false,
       correntista: false,
+      idadePerfil: ""
     });
   
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   
     useEffect(() => {
-      const isValid =
+      setIsButtonEnabled(
         formData.nome.trim() !== "" &&
         validateCpf(formData.cpf) &&
         validateWhatsapp(formData.whatsapp) &&
         validateEmail(formData.email) &&
-        formData.lgpd;
-      
-      setIsButtonEnabled(isValid);
+        formData.lgpd &&
+        formData.idadePerfil !== ""
+      );
     }, [formData]);
   
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       const { name, value } = e.target;
-
       setFormData((prev) => ({
         ...prev,
-        [name]: value, // Agora o valor é salvo sem qualquer formatação
+        [name]: value
       }));
     };
   
@@ -52,11 +56,12 @@ const CadastroCompleto: React.FC = () => {
     const handleCadastro = async () => {
       const registerData = {
         PersonName: formData.nome,
-        Cpf: formData.cpf, // CPF sem formatação
-        Phone: formData.whatsapp, // WhatsApp sem formatação
+        Cpf: formData.cpf,
+        Phone: formData.whatsapp,
         Mail: formData.email,
         HasAcceptedTerm: formData.lgpd,
         HasAccount: formData.correntista,
+        //AgeProfileId: parseInt(formData.idadePerfil),
         ExternalCode: localStorage.getItem("rfidValue") || ""
       };
       
@@ -74,83 +79,20 @@ const CadastroCompleto: React.FC = () => {
   
     return (
       <div className="cadastro-container">
-        {showPopup && <div className="popup top-right">{popupMessage}</div>}
+        <Popup show={showPopup} message={popupMessage} />
   
         <h1 className="cadastro-title">CADASTRO USUÁRIO</h1>
         <p className="cadastro-subtitle">Bradesco Lollapalooza 2025</p>
   
-        <div className="input-container">
-          <label className="input-label">Nome:</label>
-          <input 
-            type="text" 
-            name="nome" 
-            className="input-field" 
-            placeholder="Nome" 
-            value={formData.nome} 
-            onChange={handleInputChange} 
-          />
-        </div>
-  
-        <div className="input-container">
-          <label className="input-label">CPF:</label>
-          <input 
-            type="text" 
-            name="cpf" 
-            className="input-field" 
-            placeholder="CPF" 
-            value={formData.cpf} 
-            onChange={handleInputChange} 
-          />
-        </div>
-  
-        <div className="input-container">
-          <label className="input-label">Whatsapp:</label>
-          <input 
-            type="text" 
-            name="whatsapp" 
-            className="input-field" 
-            placeholder="Whatsapp" 
-            value={formData.whatsapp} 
-            onChange={handleInputChange} 
-          />
-        </div>
-  
-        <div className="input-container">
-          <label className="input-label">Email:</label>
-          <input 
-            type="text" 
-            name="email" 
-            className="input-field" 
-            placeholder="Email" 
-            value={formData.email} 
-            onChange={handleInputChange} 
-          />
-        </div>
-  
-        <div className="checkbox-container">
-          <label className="checkbox-label">
-            <input 
-              type="checkbox" 
-              name="lgpd" 
-              checked={formData.lgpd} 
-              onChange={handleCheckboxChange} 
-              required 
-            />
-            <span>Termo de responsabilidade e segurança de acordo com LGPD</span>
-          </label>
-        </div>
-  
-        <div className="checkbox-container">
-          <label className="checkbox-label">
-            <input 
-              type="checkbox" 
-              name="correntista" 
-              checked={formData.correntista} 
-              onChange={handleCheckboxChange} 
-            />
-            <span>Correntista Bradesco?</span>
-          </label>
-        </div>
+        <InputField label="Nome" name="nome" placeholder="Nome" value={formData.nome} onChange={handleInputChange} />
+        <InputField label="CPF" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleInputChange} />
+        <InputField label="Whatsapp" name="whatsapp" placeholder="Whatsapp" value={formData.whatsapp} onChange={handleInputChange} />
+        <InputField label="Email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} />
+        
+        <AgeDropdown value={formData.idadePerfil} onChange={handleInputChange} />
+        
+        <CheckboxField label="Termo de responsabilidade e segurança de acordo com LGPD" name="lgpd" checked={formData.lgpd} onChange={handleCheckboxChange} />
+        <CheckboxField label="Correntista Bradesco?" name="correntista" checked={formData.correntista} onChange={handleCheckboxChange} />
   
         <button className="cadastro-button" onClick={handleCadastro} disabled={!isButtonEnabled}>
           CADASTRAR
@@ -159,6 +101,6 @@ const CadastroCompleto: React.FC = () => {
         <p className="footer-text">HOLDING CLUBE</p>
       </div>
     );
-  };
-  
-  export default CadastroCompleto;
+};
+
+export default CadastroCompleto;
