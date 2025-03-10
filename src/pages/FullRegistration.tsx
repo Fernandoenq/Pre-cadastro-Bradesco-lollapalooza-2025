@@ -33,7 +33,7 @@ const CadastroCompleto: React.FC = () => {
         validateWhatsapp(formData.whatsapp) &&
         validateEmail(formData.email) &&
         formData.lgpd &&
-        formData.idadePerfil !== ""
+        formData.idadePerfil !== ""         
       );
     }, [formData]);
   
@@ -61,8 +61,9 @@ const CadastroCompleto: React.FC = () => {
         Mail: formData.email,
         HasAcceptedTerm: formData.lgpd,
         HasAccount: formData.correntista,
-        //AgeProfileId: parseInt(formData.idadePerfil),
-        ExternalCode: localStorage.getItem("rfidValue") || ""
+        AgeProfileId: parseInt(formData.idadePerfil),
+        ExternalCode: localStorage.getItem("rfidValue") || "",
+        OrganizerId: 10
       };
       
       console.log(registerData);
