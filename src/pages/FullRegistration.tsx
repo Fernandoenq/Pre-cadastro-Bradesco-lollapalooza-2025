@@ -62,7 +62,6 @@ const CadastroCompleto: React.FC = () => {
         HasAcceptedTerm: formData.lgpd,
         HasAccount: formData.correntista,
         AgeProfileId: parseInt(formData.idadePerfil),
-        ExternalCode: localStorage.getItem("rfidValue") || "",
         OrganizerId: 10
       };
       
