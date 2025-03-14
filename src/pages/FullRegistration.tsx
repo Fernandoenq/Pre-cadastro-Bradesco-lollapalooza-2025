@@ -62,7 +62,7 @@ const CadastroCompleto: React.FC = () => {
         HasAcceptedTerm: formData.lgpd,
         HasAccount: formData.correntista,
         AgeProfileId: parseInt(formData.idadePerfil),
-        OrganizerId: 10
+        OrganizerId: 1
       };
       
       console.log(registerData);
