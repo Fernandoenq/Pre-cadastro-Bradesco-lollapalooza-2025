@@ -1,17 +1,17 @@
-// Função para formatar CPF no padrão 000.000.000-00
+
 export const formatCpf = (value: string): string => {
     return value
-      .replace(/\D/g, "") // Remove tudo que não for número
+      .replace(/\D/g, "") 
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d)/, "$1.$2")
       .replace(/(\d{3})(\d{2})$/, "$1-$2");
   };
   
-  // Função para validar CPF
+
   export const validateCpf = (cpf: string): boolean => {
-    cpf = cpf.replace(/\D/g, ""); // Remove caracteres não numéricos
+    cpf = cpf.replace(/\D/g, ""); 
   
-    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false; // CPF inválido
+    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false; 
   
     let sum = 0, rest;
     for (let i = 1; i <= 9; i++) sum += parseInt(cpf[i - 1]) * (11 - i);

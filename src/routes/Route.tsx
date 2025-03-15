@@ -5,6 +5,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<CadastroCompleto />} />        
         <Route path="/cadastro" element={<CadastroCompleto />} />        
         <Route path="/Sucesso" element={<SuccessScreen />} />        
         

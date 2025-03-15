@@ -1,6 +1,6 @@
 import { useState } from "react"; 
 
-const API_BASE_URL = "https://api-back.picbrand.dev.br"; // Base da API
+const API_BASE_URL = "https://api-back.picbrand.dev.br";
 
 export const useApi = () => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -33,9 +33,9 @@ export const useApi = () => {
       console.log("📩 Resposta da API:", result);
 
       if (response.ok) {
-        setPopupMessage("✅ Sucesso!"); // Atualiza a mensagem do popup
-        setShowPopup(true); // Exibe o popup
-        setTimeout(() => setShowPopup(false), 3000); // Esconde após 3s
+        setPopupMessage("✅ Sucesso!"); 
+        setShowPopup(true); 
+        setTimeout(() => setShowPopup(false), 3000); 
         return result !== null ? result : {}; 
       } else {
         const errorMessage = result?.Errors?.[0] || "Erro desconhecido.";
