@@ -1,131 +1,169 @@
-.cadastro-container {
+  /* Estilização da tela de cadastro */
+  .cadastro-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding-top: 5vh;
     height: 100vh;
-    background-color: #d9d9d9;
+    background-color: #CD092F;
     font-family: Arial, sans-serif;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  
+
+  /* Adicionando a máscara PNG como sobreposição */
+  .cadastro-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../assets/Telas/TELA_1CEL.png") no-repeat center center;
+    background-size: cover;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Redução do tamanho do título */
   .cadastro-title {
-    font-size: 3.5vh;
+    font-size: 2.8vh;
     font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 1.5vh;
+    color: white;
+    position: relative;
+    z-index: 20;
   }
-  
-  .cadastro-subtitle {
-    font-size: 2vh;
-    margin-bottom: 2vh;
-  }
-  
-  .input-label {
-    font-size: 1.8vh;
-    margin-bottom: 0.5vh;
-    text-align: left;
-  }
-  
-.input-container {
+
+  /* Ajuste dos containers dos inputs e checkboxes */
+  .input-container, .checkbox-container {
+    width: 85%;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    max-width: 100%;
+    align-items: center;
     margin-bottom: 1.5vh;
-}
-
-.input-field {
-    padding: 1.5vh;
-    border: 0.2vh solid #b3b3b3;
-    border-radius: 0.8vh;
-    font-size: 2vh;
-    width: 100%;
-    height: 6vh;
-    box-sizing: border-box;
-}
-  
-  .error-text {
-    color: red;
-    font-size: 1.6vh;
-    margin-top: 0.5vh;
+    position: relative;
+    z-index: 20;
   }
-  .checkbox-container {
-    display: flex;
-    align-items: center;
-    width: 90%;
-    max-width: 500px;
-    margin-bottom: 1.5vh;
-    justify-content: flex-start;
-}
 
-.checkbox-label {
-    font-size: 1.5vh;
-    display: flex;
-    align-items: center;
-    gap: 1vh;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: left;
-}
-
-.checkbox-label input {
-    flex-shrink: 0;
-    width: 2.8vh;
-    height: 2.8vh;
-    accent-color: black;
-}
-
-  .cadastro-button {
-    width: 90%;
-    max-width: 500px;
+  /* Estilização dos campos de entrada */
+  .input-field {
     padding: 1.5vh;
-    background-color: black;
+    border: none;
+    border-radius: 1.5vh;
+    font-size: 1.8vh;
+    width: 100%;
+    height: 5.5vh;
+    box-sizing: border-box;
+    background-color: #FFC0CB;
+    color: black;
+    text-align: left;
+  }
+
+  .input-container label {
+    display: none;
+  }
+
+  /* Estilização dos grupos de checkboxes */
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5vh;
+    width: 100%;
+    position: relative;
+    z-index: 20;
+  }
+
+  /* Ajuste da cor dos títulos "Idade", "Sexo" e "Você já é cliente Bradesco?" */
+  .checkbox-group-title {
+    font-size: 2vh;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5vh;
+  }
+
+  /* Ajuste dos labels dos checkboxes */
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8vh;
+    font-size: 1.8vh;
+    color: white;
+    font-weight: bold;
+  }
+
+  /* Ajuste no tamanho e estilo do checkbox do termo LGPD */
+  .termo-lgpd input {
+    width: 2vh;
+    height: 2vh;
+    border-radius: 50%;
+    border: 2px solid white;
+    appearance: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .termo-lgpd input:checked {
+    background-color: white;
+  }
+
+  /* Botão de cadastro */
+  .cadastro-button {
+    width: 85%;
+    max-width: 450px;
+    padding: 1.5vh;
+    background-color: transparent;
     color: white;
     font-size: 2vh;
     font-weight: bold;
-    border: none;
-    border-radius: 0.8vh;
+    border: 2.5px solid white;
+    border-radius: 2.5vh;
     cursor: pointer;
-    margin-top: 2vh;
+    margin-top: 1.5vh;
+    position: relative;
+    z-index: 20;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
-  
+
+  /* Botão desativado */
   .cadastro-button:disabled {
-    background-color: gray;
+    background-color: rgba(255, 255, 255, 0.3);
     cursor: not-allowed;
     opacity: 0.5;
   }
-  
-  
+
+  /* Ajuste do rodapé */
   .footer-text {
-    margin-top: 1vh;
+    margin-top: 0.5vh;
     font-size: 1.6vh;
-    color: black;
-  }
-  
-.keyboard-container {
-    width: 90%;
-    margin: 1.5vh auto;
+    color: rgb(255, 255, 255);
     position: relative;
-}
+    z-index: 20;
+  }
 
-.simple-keyboard {
-    background: white;
-    border-radius: 0.8vh;
-    padding: 0.5vh;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
-}
+  /* Ajuste do container das logos */
+  .logo-container {
+    position: absolute;
+    bottom: 10vh; /* Subindo um pouco as logos */
+    right: 5vw; /* Movendo para a direita */
+    display: flex;
+    justify-content: flex-end; /* Mantendo alinhadas à direita */
+    align-items: center;
+    width: auto;
+    max-width: 450px; /* Aumentei para permitir expansão */
+    z-index: 20;
+  }
 
-.simple-keyboard .hg-button {
-    font-size: 1.8vh;
-    color: black;
-    background: #f0f0f0;
-    border-radius: 0.3vh;
-    padding: 0.8vh;
-    margin: 0.2vh;
-}
-
-.simple-keyboard .hg-button:hover {
-    background: #ddd;
-}
+  /* Ajuste do tamanho das logos */
+  .logo-img {
+    height: 14vh; /* Aumentei ainda mais */
+    max-width: 60%; /* Garantindo que fiquem bem visíveis */
+    object-fit: contain;
+  }
