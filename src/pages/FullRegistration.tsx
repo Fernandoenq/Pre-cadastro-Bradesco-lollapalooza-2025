@@ -20,7 +20,7 @@ const CadastroCompleto: React.FC = () => {
         cpf: "",
         email: "",
         lgpd: false,
-        correntista: "",  // Mantemos como string para captura inicial
+        correntista: "",
         idadePerfil: "",
         sexo: ""
     });
@@ -62,6 +62,29 @@ const CadastroCompleto: React.FC = () => {
             [name]: checked,
         }));
     };
+
+    // Função para converter idade para número
+    const mapAge = (age: string): number => {
+        const ageMapping: { [key: string]: number } = {
+            "até 16": 1,
+            "17 a 25": 2,
+            "26 a 35": 3,
+            "36 a 45": 4,
+            "46+": 5
+        };
+        return ageMapping[age] || 0; // 0 para valores inválidos
+    };
+
+    // Função para converter gênero para número
+    const mapGender = (gender: string): number => {
+        const genderMapping: { [key: string]: number } = {
+            "Feminino": 1,
+            "Masculino": 2,
+            "Não binário": 3,
+            "Não identificar": 4
+        };
+        return genderMapping[gender] || 0; // 0 para valores inválidos
+    };
   
     const handleCadastro = async () => {
         const registerData = {
@@ -70,10 +93,10 @@ const CadastroCompleto: React.FC = () => {
             Phone: "11999999999", // Mockando um número fictício
             Mail: formData.email,
             HasAcceptedTerm: formData.lgpd,
-            HasAccount: formData.correntista === "Sim", // 🔥 Conversão de "Sim" -> true e "Não" -> false
-            AgeProfileId: formData.idadePerfil,
-            Gender: formData.sexo,
-            OrganizerId: 1
+            HasAccount: formData.correntista === "Sim",
+            Age: mapAge(formData.idadePerfil),  // Corrigido para enviar como número
+            Gender: mapGender(formData.sexo),  // Corrigido para enviar como número
+            OrganizerId: 1,
         };
         
         console.log(registerData);
