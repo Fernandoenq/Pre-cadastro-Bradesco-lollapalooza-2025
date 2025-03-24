@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: flex-end; /* Mantém os textos na parte inferior */
     height: 100vh;
-    background: #FDB0DC url("../assets/Telas/TELA_2CEL.png") no-repeat center center;
+    background: #FDB0DC url("../assets/Telas/Tela_2CEL.png") no-repeat center center;
     background-size: cover;
     font-family: 'Arial', sans-serif;
     text-align: center;
