@@ -19,6 +19,7 @@ const CadastroCompleto: React.FC = () => {
         nome: "",
         cpf: "",
         email: "",
+        phone: "",
         lgpd: false,
         correntista: "",
         idadePerfil: "",
@@ -28,17 +29,19 @@ const CadastroCompleto: React.FC = () => {
     const [isButtonEnabled, setIsButtonEnabled] = useState(false);
   
     useEffect(() => {
+        const sanitizedPhone = sanitizePhone(formData.phone);
         setIsButtonEnabled(
             formData.nome.trim() !== "" &&
             validateCpf(formData.cpf) &&
             validateEmail(formData.email) &&
+            sanitizedPhone.length === 11 &&
             formData.lgpd &&
             formData.idadePerfil !== "" &&
             formData.sexo !== "" &&
             formData.correntista !== ""
         );
     }, [formData]);
-  
+    
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
@@ -74,6 +77,11 @@ const CadastroCompleto: React.FC = () => {
         };
         return ageMapping[age] || 0; // 0 para valores inválidos
     };
+    
+    const sanitizePhone = (phone: string): string => {
+        return phone.replace(/\D/g, ""); // Remove tudo que não for número
+    };
+    
 
     // Função para converter gênero para número
     const mapGender = (gender: string): number => {
@@ -90,7 +98,7 @@ const CadastroCompleto: React.FC = () => {
         const registerData = {
             PersonName: formData.nome,
             Cpf: formData.cpf,
-            Phone: "11999999999", // Mockando um número fictício
+            Phone: sanitizePhone(formData.phone),
             Mail: formData.email,
             HasAcceptedTerm: formData.lgpd,
             HasAccount: formData.correntista === "Sim",
@@ -120,7 +128,8 @@ const CadastroCompleto: React.FC = () => {
             <InputField label="Nome" name="nome" placeholder="Nome" value={formData.nome} onChange={handleInputChange} />
             <InputField label="CPF" name="cpf" placeholder="CPF" value={formData.cpf} onChange={handleInputChange} />
             <InputField label="Email" name="email" placeholder="E-mail" value={formData.email} onChange={handleInputChange} />
-            
+            <InputField label="Telefone" name="phone" placeholder="(11) 99999-9999" value={formData.phone} onChange={handleInputChange} />
+
             <div className="age-container">
                 <label className="input-label">Idade</label>
                 <div className="checkbox-group">
