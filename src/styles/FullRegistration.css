@@ -99,7 +99,7 @@
 
   /* Ajuste no tamanho e estilo do checkbox do termo LGPD */
   .termo-lgpd input {
-    width: 2vh;
+    width: 5vh;
     height: 2vh;
     border-radius: 50%;
     border: 2px solid white;
@@ -166,4 +166,10 @@
     height: 14vh; /* Aumentei ainda mais */
     max-width: 60%; /* Garantindo que fiquem bem visíveis */
     object-fit: contain;
+  }
+
+
+  .checkbox-label input[type="radio"] {
+    width: 1.5vh;
+    height: 1.5vh;
   }
